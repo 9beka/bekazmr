@@ -1,0 +1,23 @@
+.container {
+  h2{
+    text-transform: uppercase;
+  }
+    .img {
+      width: 50vh;
+      height: 30vh;
+      padding: 20px;
+      border-radius: 15%;
+    }
+   form{
+        
+    }
+    .profile_Wrapper{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    button{
+      margin: 10px 0;
+      width: 150px;
+    }
+}

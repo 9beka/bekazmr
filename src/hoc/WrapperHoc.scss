@@ -1,0 +1,9 @@
+.container_wrapper{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   .center-container {
+      width: 300px; 
+    }
+}
