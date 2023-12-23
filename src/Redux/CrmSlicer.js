@@ -149,7 +149,7 @@ const CrmSlicer = createSlice({
     });
     builder.addCase(NEW_PRODUCT.fulfilled, (state, action) => {
       console.log("FULLFILLED", action.payload);
-      state.fakeData.push(action.payload);
+      state.fakeData=[action.payload,...state.fakeData];
     });
     builder.addCase(NEW_PRODUCT.rejected, (state, action) => {
       console.log("rejected", action);

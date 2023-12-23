@@ -27,11 +27,6 @@ const ButtonCrud = ({ _id }) => {
     {contextHolder}
       <Flex wrap="wrap" gap="small" className="site-button-ghost-wrapper">
       <EditModal _id={_id} openNotification={openNotification} />
-        {/* <Button onClick={() => handleEdit(_id)} type="primary" ghost>
-          <EditOutlined />
-          EDIT
-        </Button> */}
-
         <Button onClick={() => handleDelete(_id)} type="primary" danger ghost>
           <DeleteOutlined />
           DELETE
@@ -87,38 +82,38 @@ export const ProductTable = [
     sortDirection: ["descend", "ascend"],
   },
 ];
-export const UserTable = [
-  {
-    title: "Users",
-    dataIndex: "image",
-    //   sorter: (a, b) => a.id - b.id,
-    render: (imageUrl) => (
-      <img
-        src={imageUrl}
-        alt="Product"
-        style={{ width: 60, height: 50, borderRadius: 50 }}
-      />
-    ),
-  },
+// export const UserTable = [
+//   {
+//     title: "Users",
+//     dataIndex: "image",
+//     //   sorter: (a, b) => a.id - b.id,
+//     render: (imageUrl) => (
+//       <img
+//         src={imageUrl}
+//         alt="Product"
+//         style={{ width: 60, height: 50, borderRadius: 50 }}
+//       />
+//     ),
+//   },
 
-  {
-    title: "Username",
-    dataIndex: "username",
-    sorter: (a, b) => a.title.localeCompare(b.title),
-    sortDirection: ["descend", "ascend"],
-  },
-  {
-    title: "Phone",
-    dataIndex: "phone",
-    render: (text) => `+${text}`,
-    sorter: (a, b) => a.price - b.price,
-    sortDirection: ["descend", "ascend"],
-  },
+//   {
+//     title: "Username",
+//     dataIndex: "username",
+//     sorter: (a, b) => a.title.localeCompare(b.title),
+//     sortDirection: ["descend", "ascend"],
+//   },
+//   {
+//     title: "Phone",
+//     dataIndex: "phone",
+//     render: (text) => `+${text}`,
+//     sorter: (a, b) => a.price - b.price,
+//     sortDirection: ["descend", "ascend"],
+//   },
 
-  {
-    title: "ID",
-    dataIndex: "id",
-    sorter: (a, b) => a.id - b.id,
-    sortDirection: ["descend", "ascend"],
-  },
-];
+//   {
+//     title: "ID",
+//     dataIndex: "id",
+//     sorter: (a, b) => a.id - b.id,
+//     sortDirection: ["descend", "ascend"],
+//   },
+// ];
