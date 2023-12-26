@@ -1,2 +1,2 @@
-export const BACKEND_HOST_API = "https://bekazmr-api.onrender.com";
+export const BACKEND_HOST_API = "http://localhost:10000";
 // "https://bekazmr-api.onrender.com" for deploy
