@@ -5,7 +5,6 @@ import { notification} from 'antd';
 import { useSelector } from "react-redux";
 import "./Profile.scss";
 import ModalProfile from "./ModalProfile";
-
 const ProfilePage = () => {
   const { UserData } = useSelector((state) => state.login);
 

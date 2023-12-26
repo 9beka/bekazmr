@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { UserOutlined, DingdingOutlined } from "@ant-design/icons";
+import { UserOutlined, DingdingOutlined,FileImageOutlined } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./Wrapper.scss";
@@ -35,6 +35,7 @@ const Wrapper = () => {
   const items = [
     getItem("Profile", "2", <UserOutlined />, "/"),
     getItem("CRM", "3", <DingdingOutlined />, "/crud"),
+    getItem("IMG", "4", <FileImageOutlined />, "/generator"),
   ];
   const [collapsed, setCollapsed] = useState(true);
   const {
@@ -55,7 +56,6 @@ const Wrapper = () => {
 
         <Menu
           theme="dark"
-          // defaultSelectedKeys={["3"]}
           mode="inline"
           items={items}
         />

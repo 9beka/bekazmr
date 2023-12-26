@@ -25,10 +25,6 @@ export const CHANGE_USER = createAsyncThunk(
 );
 
 const initialState = {
-  data: [],
-  error: null,
-  validationErrors: [],
-  existsUSer: "",
   UserData: [],
 };
 const ProfileChangeSlicer = createSlice({
@@ -38,16 +34,11 @@ const ProfileChangeSlicer = createSlice({
   extraReducers: (builder) => {
     builder.addCase(CHANGE_USER.fulfilled, (state, action) => {
       console.log("FULLFILLED", action.payload);
-      state.existsUSer = action.payload.message;
 
-      state.validation = action.payload;
-      state.data = action.payload;
-      state.token = action.payload.token;
+      state.profileData = action.payload;
     });
     builder.addCase(CHANGE_USER.rejected, (state, action) => {
       console.log("rejected", action);
-      console.log(action.payload);
-      state.error = action.payload;
     });
     builder.addCase(CHANGE_USER.pending, (state, action) => {
       console.log("pending", action);

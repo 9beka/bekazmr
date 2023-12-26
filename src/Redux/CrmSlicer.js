@@ -51,7 +51,7 @@ export const DELETE_PRODUCT = createAsyncThunk(
         }
       );
       console.log(response);
-      dispatch(GET_FAKESHOP());
+      dispatch(PAGINATION_CRM());
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -74,7 +74,7 @@ export const EDIT_PRODUCT = createAsyncThunk(
       );
       console.log(response);
 
-      dispatch(GET_FAKESHOP());
+      dispatch(PAGINATION_CRM());
       return response.data;
     } catch (e) {
       return rejectWithValue(e.message);
@@ -95,7 +95,7 @@ export const POST_PHOTO = createAsyncThunk(
       );
       console.log(response);
       const data = await response.json();
-      dispatch(GET_FAKESHOP());
+      dispatch(PAGINATION_CRM());
       return data;
     } catch (e) {
       return rejectWithValue(e.message);
@@ -116,24 +116,55 @@ export const NEW_PRODUCT = createAsyncThunk(
       );
       console.log(response);
       const data = await response.json();
-      dispatch(GET_FAKESHOP());
+      dispatch(PAGINATION_CRM());
       return data;
     } catch (e) {
       return rejectWithValue(e.message);
     }
   }
 );
+
+export const PAGINATION_CRM = createAsyncThunk (
+  "PAGINATION/PAGINATION_CRM",
+  async (currentPage, {rejectWithValue, dispatch,})=>{
+    console.log(currentPage);
+    try {
+      const response = await fetch(`${url}/pagination/?page=${currentPage}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      const finalData = await response.json();
+      return finalData;
+
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+)
 const initialState = {
+  fakeShop : [],
   fakeData: [],
   fakeDetail: [],
   fakeError: null,
   getCurrentID: null,
+  pages: null,
+  isLoading: false,
+  currentPage: 1,
 };
 
 const CrmSlicer = createSlice({
   name: "CRM",
   initialState,
-  reducers: {},
+  reducers: {
+    setLoading: (state, action) => {
+      state.isLoading = action.payload;
+    },
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(GET_FAKESHOP.fulfilled, (state, action) => {
       console.log("FULLFILLED", action.payload);
@@ -146,6 +177,21 @@ const CrmSlicer = createSlice({
     builder.addCase(GET_FAKESHOP.pending, (state, action) => {
       console.log("pending", action);
       state.fakeError = null;
+    });
+    builder.addCase(PAGINATION_CRM.fulfilled, (state, action) => {
+      console.log("FULLFILLED", action.payload);
+      state.pages = action.payload.pages;
+      state.fakeShop = action.payload.products;
+      state.isLoading = false
+    });
+    builder.addCase(PAGINATION_CRM.rejected, (state, action) => {
+      console.log("rejected", action);
+      state.fakeError = action.payload;
+    });
+    builder.addCase(PAGINATION_CRM.pending, (state, action) => {
+      console.log("pending", action);
+      state.fakeError = null;
+      state.isLoading = true
     });
     builder.addCase(NEW_PRODUCT.fulfilled, (state, action) => {
       console.log("FULLFILLED", action.payload);
@@ -178,4 +224,5 @@ const CrmSlicer = createSlice({
     });
   },
 });
+export const { setLoading ,setCurrentPage } = CrmSlicer.actions;
 export default CrmSlicer.reducer;

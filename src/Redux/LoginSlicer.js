@@ -137,7 +137,6 @@ const RegistrationSlicer = createSlice({
     });
     builder.addCase(GET_USER.pending, (state, action) => {
       console.log("pending", action);
-      state.UserData = null;
       state.error = null;
     });
 
