@@ -39,7 +39,7 @@ const СrmSystem = () => {
           onDoubleClick: () => handleClick(record),
         })}
       />
-      <PaginationCRM/>
+      <PaginationCRM/>  
     </div>
   );
 };

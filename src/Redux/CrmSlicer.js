@@ -124,9 +124,9 @@ export const NEW_PRODUCT = createAsyncThunk(
   }
 );
 
-export const PAGINATION_CRM = createAsyncThunk (
+export const PAGINATION_CRM = createAsyncThunk(
   "PAGINATION/PAGINATION_CRM",
-  async (currentPage, {rejectWithValue, dispatch,})=>{
+  async (currentPage, { rejectWithValue, dispatch }) => {
     console.log(currentPage);
     try {
       const response = await fetch(`${url}/pagination/?page=${currentPage}`, {
@@ -134,17 +134,16 @@ export const PAGINATION_CRM = createAsyncThunk (
         headers: {
           "Content-Type": "application/json",
         },
-      })
+      });
       const finalData = await response.json();
       return finalData;
-
     } catch (e) {
       return rejectWithValue(e.message);
     }
   }
-)
+);
 const initialState = {
-  fakeShop : [],
+  fakeShop: [],
   fakeData: [],
   fakeDetail: [],
   fakeError: null,
@@ -182,7 +181,7 @@ const CrmSlicer = createSlice({
       console.log("FULLFILLED", action.payload);
       state.pages = action.payload.pages;
       state.fakeShop = action.payload.products;
-      state.isLoading = false
+      state.isLoading = false;
     });
     builder.addCase(PAGINATION_CRM.rejected, (state, action) => {
       console.log("rejected", action);
@@ -191,11 +190,11 @@ const CrmSlicer = createSlice({
     builder.addCase(PAGINATION_CRM.pending, (state, action) => {
       console.log("pending", action);
       state.fakeError = null;
-      state.isLoading = true
+      state.isLoading = true;
     });
     builder.addCase(NEW_PRODUCT.fulfilled, (state, action) => {
       console.log("FULLFILLED", action.payload);
-      state.fakeData=[action.payload,...state.fakeData];
+      state.fakeData = [action.payload, ...state.fakeData];
     });
     builder.addCase(NEW_PRODUCT.rejected, (state, action) => {
       console.log("rejected", action);
@@ -224,5 +223,5 @@ const CrmSlicer = createSlice({
     });
   },
 });
-export const { setLoading ,setCurrentPage } = CrmSlicer.actions;
+export const { setLoading, setCurrentPage } = CrmSlicer.actions;
 export default CrmSlicer.reducer;

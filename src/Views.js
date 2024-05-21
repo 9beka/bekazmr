@@ -20,7 +20,7 @@ console.log(UserData);
           <Route path="crud"  element={<CrmSystem />} />
           <Route path="/details/:id" element={<Details/>} />
           <Route path="/generator" element={<Generator/>} />
-        </Route>
+        </Route>  
         <Route path="/login" element={token?<Navigate to="/" replace />:<Login/>}/>
         <Route path="/register" element={token?<Navigate to="/" replace />:<Registration/>}/>
       </Routes>

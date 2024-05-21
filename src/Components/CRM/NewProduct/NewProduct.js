@@ -5,7 +5,7 @@ import {  Input } from "antd";
 import {  NEW_PRODUCT } from '../../../Redux/CrmSlicer';
 import "./NewProduct.scss"
 const NewProduct = () => {
-   const [file, setFile] = useState();
+   const [ file , setFile] = useState();
   const dispatch = useDispatch();
 
   const [api, contextHolder] = notification.useNotification();
